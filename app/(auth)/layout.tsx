@@ -1,32 +1,53 @@
-import Image from "next/image";
 import React from "react";
+import Background from "@/app/backgrounds/background";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      {/*Div for sign-in and sign-up screen for centering*/}
-      <div className="w-1/2 h-full flex items-center justify-center">
-        {children}
-      </div>
+    <div className="flex min-h-screen items-center justify-center gap-32">
+      {/* Background of page */}
+      <div className="absolute inset-0 -z-10">
+        <Background />
+      </div> {/* Background of page */}
 
-      {/*Screen and logo image*/}
-      <div className="hidden md:flex w-1/2 h-full relative">
-        <Image
-          src="/images/screen.png"
-          width={1000}
-          height={1000}
-          alt="Doctors"
-          className="w-full h-full object-cover"
-        />
 
-        <div
-          className="absolute top-0 w-full h-full 
-        bg-opacity-10 z-10 flex flex-col items-center justify-center"
-        >
-          <h1>SchedulCare</h1>
-          <p>You're welcome</p>
+      {/* Login Box + Text */}   
+      <div className="flex flex-col items-center space-y-12">
+        <h1 className="mb-6 text-8xl font-bold text-[#00CFCF] text-center text-shadow-lg">
+          MediPosure
+        </h1>
+
+        <h1 className="mb-12 text-2xl font-bold text-blue-950 text-center">
+          Book doctor appointments instantaneoulsy
+        </h1>
+
+        <div className="flex flex-col items-center">
+          {children}
         </div>
-      </div>
+      </div> {/* Login Box + Text */}
+
+      {/* Logo + icons */}
+      <div className="flex flex-col items-center space-y-6">
+        <img
+          src="/icons/logo.png"
+          alt="logo"
+          className="w-120 h-120"
+        />
+        <ul className="space-y-4 text-blue-950 text-2xl">
+          <li className="flex items-center">
+            <img src="/icons/check.png" alt="check" className="w-5 h-5 mr-2" />
+            Find top-rated specialists
+          </li>
+          <li className="flex items-center">
+            <img src="/icons/arrow.png" alt="arrow" className="w-5 h-5 mr-2" />
+            Manage appointments securely
+          </li>
+          <li className="flex items-center">
+            <img src="/icons/person.png" alt="person" className="w-5 h-5 mr-2" />
+            Save time & hassle
+          </li>
+        </ul>
+      </div> {/* Logo + icons */}
+
     </div>
   );
 };

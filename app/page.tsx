@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+import Background from "@/app/backgrounds/background";
+import { UserButton } from "@clerk/nextjs";
 
 
 export default async function Home() {
@@ -9,14 +11,18 @@ export default async function Home() {
   
   return (
     <div className="flex flex-col items-center justify-center h-screen p-6">
+       {/* Background of page */}
+      <div className="absolute inset-0 -z-10">
+        <Background />
+      </div> {/* Background of page */}
       <div className="flex-1 flex flex-col items-center justify-center">
 
         {/*Welcome Screen Div*/}
         <div className="mb-8">
           <h1 className="text-4xl md:text-5xl font-bold text-center">
             Welcome to <br/>
-          <span className="text-blue-700 text-5xl md:text-6xl">
-            SchedulCare
+          <span className="text-[#00CFCF] text-5xl md:text-6xl">
+            MediPosure
             </span>
           </h1>
         </div> {/*Welcome Screen Div*/}
@@ -30,7 +36,14 @@ export default async function Home() {
 
           <div className="flex gap-4">
             {
-              userId ? (<></>) : (
+              userId ? (
+              <>
+              <Link href={'/dashboard'}>
+              <Button>View Dashboard</Button>
+              </Link>
+              <UserButton />
+              </>
+              ) : (
               <>
               {/*New Patient*/}
               <Link href="/sign-up">
@@ -41,7 +54,7 @@ export default async function Home() {
               {/*Login Link*/}
               <Link href="/sign-in">
               <Button variant="outline" 
-                className="md:text-base underline hover text-blue-600">
+                className="md:text-base underline hover text-[#00CFCF]">
                 Login to Account
               </Button>
               </Link>
@@ -55,7 +68,7 @@ export default async function Home() {
       </div>
       <footer className="mt-8">
         <p className="text-center text-sm">
-            &copy; 2025 SchedulCare H Management System. All rights reserved.
+            &copy; 2025 MediPosure H Management System. All rights reserved.
         </p>
       </footer>
     </div>
